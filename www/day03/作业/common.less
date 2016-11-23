@@ -174,7 +174,7 @@ ol {
             float: right;
             text-align: right;
             line-height: 70px;
-            a{
+            a {
                 padding: 0px 10px;
                 color: #fe4005;
                 text-decoration: none;
@@ -187,29 +187,29 @@ ol {
     background: #150d08;
     height: 98px;
     line-height: 98px;
-    .footer-box{
+    .footer-box {
         width: 1040px;
         margin: 0 auto;
-        .box-left{
+        .box-left {
             float: left;
             color: #848484;
-            a{
+            a {
                 color: #848484;
                 text-decoration: none;
-                &:hover{
+                &:hover {
                     color: #f94600;
                 }
             }
         }
-        .box-right{
+        .box-right {
             float: right;
             text-align: right;
             color: #848484;
-            .logo1{
+            .logo1 {
                 color: #fff;
                 font-size: 24px;
             }
-            .logo2{
+            .logo2 {
                 color: #fd4400;
                 font-size: 24px;
                 font-weight: 700;
@@ -218,11 +218,121 @@ ol {
     }
 }
 
-.qmgj-g-body{
+.qmgj-g-body {
     background: #f7fafa;
-    height: 500px;
-    .body-box{
+    .body-box {
         width: 1200px;
         margin: 0 auto;
+        padding: 65px 0;
+        .login-box {
+            width: 400px;
+            margin: 0 auto;
+            border: 1px solid #d9dcdc;
+            border-radius: 4px;
+            background: #fff;
+            .box-group {
+                padding: 0 20px;
+                .title {
+                    font-size: 20px;
+                    color: #130d0a;
+                    font-weight: 700;
+                    line-height: 90px;
+                }
+                .login-item {
+                    position: relative;
+                    padding-bottom: 40px;
+                    input {
+                        border: 1px solid #dcdcdd;
+                        padding: 0 12px;
+                        width: 100%;
+                        height: 40px;
+                        line-height: 40px;
+                        border-radius: 4px;
+                    }
+                    .error {
+                        position: absolute;
+                        left: 12px;
+                        bottom: 15px;
+                        color: red;
+                        font-size: 12px;
+                    }
+                    a.forget-pwd {
+                        color: #848484;
+                        text-decoration: none;
+                        position: absolute;
+                        right: 12px;
+                        font-size: 12px;
+                        bottom: 15px;
+                    }
+                }
+                .login-btn {
+                    line-height: 40px;
+                    color: #fff;
+                    border-radius: 4px;
+                    text-align: center;
+                    cursor: pointer;
+                    background: #2ade73;
+                }
+                .login-remind {
+                    margin-top: 14px;
+                    margin-left: 12px;
+                    line-height: 24px;
+                    .qmgj-checkbox {
+                        float: left;
+                        margin-top: 5px;
+                        margin-right: 5px;
+                        width: 16px;
+                        height: 16px;
+                        background: url(sprite-list.png);
+                        background-position: 0 -184px;
+                    }
+                }
+                .login-three {
+                    border-top: 1px solid #dadadb;
+                    position: relative;
+                    margin-top: 35px;
+                    padding: 25px;
+                    text-align: center;
+                    h3 {
+                        position: absolute;
+                        top: -10px;
+                        left: 0px;
+                        right: 0px;
+                        text-align: center;
+                        span {
+                            background: #fff;
+                            padding: 0 10px;
+                        }
+                    }
+                    .three {
+                        display: inline-block;
+                        margin: 0 3px;
+                        width: 40px;
+                        height: 40px;
+                        background: url(sprite-list.png);
+                    }
+                    .weixin {
+                        background-position: -532px 0;
+                    }
+                    .qq {
+                        background-position: 0 -1328px;
+                    }
+                    .sina {
+                        background-position: 0 -1611px;
+                    }
+                }
+            }
+            .box-bottom {
+                background: #f7f7f8;
+                line-height: 60px;
+                text-align: center;
+                color: #858585;
+                border-top: 1px solid #d9dcdc;
+                a {
+                    color: #029ff9;
+                    text-decoration: none;
+                }
+            }
+        }
     }
 }
