@@ -94,6 +94,23 @@
             // 初始化
             init: function() {
                 this.events();
+                this.getStorage();
+            },
+            //进页面后处理数据，有的话，展示出来
+            getStorage: function(){
+                if( localStorage.getItem('isStor') ){
+                    var isStor = localStorage.getItem('isStor');
+                    var phone = localStorage.getItem('phone');
+                    var pwd = localStorage.getItem('pwd');
+                    $('#box-group input[type="text"]').val( phone );
+                    $('input[type="password"]').val( pwd );
+                    isStor == 'true'? $('.qmgj-checkbox').addClass('active'):'';
+                }else if( sessionStorage.getItem('isStor') ){
+                    var phone = sessionStorage.getItem('phone');
+                    var pwd = sessionStorage.getItem('pwd');
+                    $('#box-group input[type="text"]').val( phone );
+                    $('input[type="password"]').val( pwd );
+                }
             },
             // 绑定事件
             events: function() {
@@ -126,19 +143,21 @@
                 return flag;
             },
             ajaxLogin: function() {
-                var $phone = $('#box-group input[type="text"]');
-                var $pwd = $('input[type="password"]');
+                var that = this;
+                var phoneVal = $('#box-group input[type="text"]').val();
+                var pwdVal = $.trim( $('input[type="password"]').val() );
+                var isStorage = $('.qmgj-checkbox').hasClass('active');
                 $.ajax({
                     url: 'UserLogin.json',
                     type: 'get',
                     data: {
-                        phone: $phone.val(),
-                        pwd: $.trim($pwd.val()),
-                        isSave: $('.qmgj-checkbox').hasClass('active')
+                        phone: phoneVal,
+                        pwd: pwdVal,
+                        isSave: isStorage
                     },
                     success: function(res) {
                         if (res.resultCode == '0000') {
-                            alert('成功')
+                            that.dealStorage( isStorage, phoneVal, pwdVal );
                         } else {
                             alert(res.resultMsg)
                         }
@@ -147,6 +166,20 @@
                         alert('服务器不稳定')
                     }
                 });
+            },
+            // 处理存储数据的问题
+            dealStorage: function(isStor, phone, pwd){
+                localStorage.clear();
+                sessionStorage.clear();
+                if( isStor ){
+                    localStorage.setItem('isStor',isStor);
+                    localStorage.setItem('phone',phone);
+                    localStorage.setItem('pwd',pwd);
+                }else{
+                    sessionStorage.setItem('isStor',isStor);
+                    sessionStorage.setItem('phone',phone);
+                    sessionStorage.setItem('pwd',pwd);
+                }
             }
         }
         Login.init();
