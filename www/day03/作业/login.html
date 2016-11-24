@@ -90,35 +90,51 @@
     <script>
     $(document).ready(function() {
         // $ 看到$box立马能明白，这是jquery获取的节点
-        var $box = $('#box-group');
-        $('.login-btn').on('click', function(e) {
-            var $phone = $('#box-group input[type="text"]');
-            var $pwd = $('input[type="password"]');
+        var Login = {
+            // 初始化
+            init: function() {
+                this.events();
+            },
+            // 绑定事件
+            events: function() {
+                var that = this;
+                $('.login-btn').on('click', function(e) {
+                    var Flag = that.checkForm();
+                    if (Flag) that.ajaxLogin();
+                });
 
-            var flag = true;
-            if (/^(1[3578]\d{9})$/g.test($phone.val())) {
-                $('.phone-error').hide();
-            } else {
-                $('.phone-error').show();
-                // flag = false;
-                return;
-            }
-
-            if ($.trim($pwd.val()).length > 6) {
-                $('.pwd-error').hide();
-            } else {
-                $('.pwd-error').show();
-                return;
-                // flag = false;
-            }
-
-            if (flag) {
+                $('.qmgj-checkbox').on('click', function(e) {
+                    $(this).toggleClass('active');
+                });
+            },
+            checkForm: function() {
+                var $phone = $('#box-group input[type="text"]');
+                var $pwd = $('input[type="password"]');
+                var flag = true;
+                if (/^(1[3578]\d{9})$/g.test($phone.val())) {
+                    $('.phone-error').hide();
+                } else {
+                    $('.phone-error').show();
+                    flag = false;
+                }
+                if ($.trim($pwd.val()).length > 6) {
+                    $('.pwd-error').hide();
+                } else {
+                    $('.pwd-error').show();
+                    flag = false;
+                }
+                return flag;
+            },
+            ajaxLogin: function() {
+                var $phone = $('#box-group input[type="text"]');
+                var $pwd = $('input[type="password"]');
                 $.ajax({
                     url: 'UserLogin.json',
                     type: 'get',
                     data: {
                         phone: $phone.val(),
-                        pwd: $.trim($pwd.val())
+                        pwd: $.trim($pwd.val()),
+                        isSave: $('.qmgj-checkbox').hasClass('active')
                     },
                     success: function(res) {
                         if (res.resultCode == '0000') {
@@ -132,7 +148,8 @@
                     }
                 });
             }
-        });
+        }
+        Login.init();
 
     });
     </script>
